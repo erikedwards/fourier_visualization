@@ -56,9 +56,9 @@ while run:
             if event.key == pygame.K_DOWN and maxN > 2:
                 maxN -= 2
             if event.key == pygame.K_RIGHT:
-                FR += 2
+                FR += 10
             if event.key == pygame.K_LEFT and FR > 2:
-                FR -= 2
+                FR -= 10
 
     # Game logic
     time += timeStep
@@ -99,7 +99,7 @@ while run:
 
     # Add y value of smallest circle to wave
     wave.insert(0, y)
-    if len(wave) > 500:
+    if len(wave) > 650:
         wave.pop(-1)
 
     # --- draw wave
