@@ -3,8 +3,8 @@ import pygame
 import math
 
 # CONSTANTS
-SCREEN_WIDTH = 1600
-SCREEN_HEIGHT = 900
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 600
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -32,7 +32,7 @@ wave = []
 waveX = int(SCREEN_WIDTH * (2/4))
 # waveY = int(SCREEN_HEIGHT / 2)
 time = 0.00
-timeStep = 0.01
+timeStep = 0.005
 
 # Main Loop
 run = True
@@ -56,9 +56,16 @@ while run:
             if event.key == pygame.K_DOWN and maxN > 2:
                 maxN -= 2
             if event.key == pygame.K_RIGHT:
-                FR += 10
-            if event.key == pygame.K_LEFT and FR > 2:
-                FR -= 10
+                if FR > 9:
+                    FR += 10
+                else:
+                    FR += 1
+            if event.key == pygame.K_LEFT:
+                if FR > 19:
+                    FR -= 10
+                elif FR > 1:
+                    FR -= 1
+
 
     # Game logic
     time += timeStep
@@ -84,6 +91,7 @@ while run:
     rad = int(circScale * (4 / (1 * math.pi)))
     pygame.draw.line(screen, BLACK, [waveX, circY - rad], [waveX, circY + rad])
     pygame.draw.line(screen, BLACK, [waveX - 50, circY], [SCREEN_WIDTH, circY])
+    #TODO --- add lines to Catia geoset "geom_drawAxis"
 
     x = circX
     y = circY
@@ -96,6 +104,7 @@ while run:
         # --- draw circle
         pygame.draw.circle(screen, BLACK, [prevX, prevY], rad, 1)
         pygame.draw.line(screen, RED, [prevX, prevY], [x, y])
+        #TODO --- add circle and line to Catia geoset "geom_circularMotion"
 
     # Add y value of smallest circle to wave
     wave.insert(0, y)
@@ -107,6 +116,7 @@ while run:
         pX = int(waveX + i)
         pY = int(wave[i])
         pygame.draw.circle(screen, GREEN, [pX, pY], 1)
+        #TODO --- add point to Catia geoset "geom_linearMotion-Sin(theta)"
     # --- draw connecting level line
     pygame.draw.line(screen, GREY, [x, y], [waveX, y])
 
