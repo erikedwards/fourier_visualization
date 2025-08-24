@@ -6,7 +6,7 @@ let colors = [];
 let time;
 let maxN;
 let slider;
-
+const sliderMax = 50;
 
 function setup() {
   createCanvas(screenWidth, screenHeight);
@@ -21,13 +21,13 @@ function setup() {
   
   maxN = 11;
   
-  for (i=0; i<100; i++) {
+  for (i=0; i<=sliderMax; i++) {
     waves[i] = [];
-    colors[i] = color(random(255), random(255), random (255));
+    // colors[i] = color(random(255), random(255), random (255));
   }
   
   // Create a slider and place it at the top of the canvas.
-  slider = createSlider(1, 50);
+  slider = createSlider(1, sliderMax);
   slider.position(10, height - 50);
   slider.size(300);
   slider.value(5);
@@ -69,17 +69,18 @@ function draw() {
     }
   }
   //circle(x, y, rad/PI);
-  
+
+  // check if waves.length is greater than slider value. If so, slider slid left and need to kill the extras?
+  // TODO
+
+  // Draw the waves
   for (u = 0; u < waves.length; u++) {
+    // set alpha based on depth in array. Last entry is most visible
+    alph = u / waves.length * 255;
+    stroke(0,0,0, alph);
     for (j = 0; j < waves[u].length; j++) {
       pX = waveX + j;
       pY = waves[u][j];
-      // set alpha depending on u value. 
-      // set alpha relative to depth in array
-      alph = ((waves.length/u)*1);
-      
-      // stroke(0,0,0,alph);
-      stroke(colors[u], 100);
       circle(pX, pY, 1);
     }
   }
