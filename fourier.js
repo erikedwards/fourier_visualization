@@ -37,7 +37,19 @@ function setup() {
 function draw() {
   background(220);
   stroke(0,0,0,255);
+  // update array to match slider value
   maxN = slider.value();
+  for (i = 0; i < sliderMax; i++) {
+    if (i <= maxN) {
+      // make sure there's a wave array for this 'n'. If not, add one.
+      if (waves[i] == "null") {
+        waves[i] = [];
+      }
+    } else {
+      // make sure this spot is empty
+      waves.splice(i, 1);
+    }
+  }
   
   time += timeStep;
   
