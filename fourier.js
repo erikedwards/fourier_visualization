@@ -76,8 +76,8 @@ function draw() {
   // Draw the waves
   for (u = 0; u < waves.length; u++) {
     // set alpha based on depth in array. Last entry is most visible
-    alph = u / waves.length * 255;
-    stroke(0,0,0, 50);
+    alph = u / waves.length * 100;
+    stroke(0,0,0, alph);
     for (j = 0; j < waves[u].length; j++) {
       pX = waveX + j;
       pY = waves[u][j];
