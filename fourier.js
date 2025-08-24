@@ -101,8 +101,6 @@ function draw() {
   stroke(0,0,0,255);
   line(x, y, waveX, y);
   
-  
-  
-  
+ 
   
 }
